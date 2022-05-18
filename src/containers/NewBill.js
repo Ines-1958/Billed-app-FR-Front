@@ -19,11 +19,28 @@ export default class NewBill {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
+    //const filePath = e.target.value.split(/\.jpg|\.jpeg|\.png|/g)
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
+
+    //Code test
+    const extensions = /(\.jpg|\.jpeg|\.png)$/i;
+    
+    if (!extensions.exec(filePath)) {
+      alert('Format de fichier non valide');
+      //file.value = "";
+      
+      return false;
+    }
+    else {
+      if (file.files && file.files[0]){ 
+			  alert('Format de fichier valide');
+		  }
+      console.log("totototo"); 
+   
 
     this.store
       .bills()
@@ -38,12 +55,18 @@ export default class NewBill {
         this.billId = key
         this.fileUrl = fileUrl
         this.fileName = fileName
+        console.log(fileName);
       }).catch(error => console.error(error))
+    }
   }
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
+    console.log(this.fileName);
+    if (this.fileName ) {
+
+    
     const bill = {
       email,
       type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
@@ -59,6 +82,10 @@ export default class NewBill {
     }
     this.updateBill(bill)
     this.onNavigate(ROUTES_PATH['Bills'])
+    }
+    else {
+      alert("format d'image incorrect");
+    }
   }
 
   // not need to cover this function by tests

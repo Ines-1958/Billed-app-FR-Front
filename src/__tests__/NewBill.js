@@ -16,3 +16,16 @@ describe("Given I am connected as an employee", () => {
     })
   })
 })
+
+//On va tester les fonctions handleChangeFile et handleSubmit
+//test unitaire handleChangeFile
+describe("Given I am connected as an employee", () => {
+  describe("When I am on NewBill Page", () => {
+    test("Then ...", () => {
+      const html = NewBillUI()
+      document.body.innerHTML = html
+      //to-do write assertion
+    })
+  })
+})
+

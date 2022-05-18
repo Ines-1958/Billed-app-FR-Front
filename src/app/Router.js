@@ -30,6 +30,7 @@ export default () => {
       const divIcon2 = document.getElementById('layout-icon2')
       divIcon1.classList.add('active-icon')
       divIcon2.classList.remove('active-icon')
+      console.log("if");
       const bills = new Bills({ document, onNavigate, store, localStorage  })
       bills.getBills().then(data => {
         rootDiv.innerHTML = BillsUI({ data })
@@ -47,7 +48,9 @@ export default () => {
       const divIcon1 = document.getElementById('layout-icon1')
       const divIcon2 = document.getElementById('layout-icon2')
       divIcon1.classList.remove('active-icon')
+      //divIcon1.classList.add('active-icon')
       divIcon2.classList.add('active-icon')
+      console.log("else if")
     } else if (pathname === ROUTES_PATH['Dashboard']) {
       rootDiv.innerHTML = ROUTES({ pathname, loading: true })
       const bills = new Dashboard({ document, onNavigate, store, bills: [], localStorage })

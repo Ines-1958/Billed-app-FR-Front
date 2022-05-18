@@ -18,10 +18,14 @@ const row = (bill) => {
     </tr>
     `)
   }
+console.log(row);
+//console.log(bill);
+
 
 const rows = (data) => {
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
 }
+console.log(rows);
 
 export default ({ data: bills, loading, error }) => {
   
