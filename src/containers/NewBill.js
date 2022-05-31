@@ -26,12 +26,11 @@ export default class NewBill {
     formData.append('file', file)
     formData.append('email', email)
 
-    //Code test
+    //Code format fichier
     const extensions = /(\.jpg|\.jpeg|\.png)$/i;
     
     if (!extensions.exec(filePath)) {
       alert('Format de fichier non valide');
-      //file.value = "";
       
       return false;
     }
@@ -39,8 +38,6 @@ export default class NewBill {
       if (file.files && file.files[0]){ 
 			  alert('Format de fichier valide');
 		  }
-      console.log("totototo"); 
-   
 
     this.store
       .bills()

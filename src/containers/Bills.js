@@ -31,6 +31,7 @@ export default class {
     $('#modaleFile').modal('show')
     console.log(billUrl);
     console.log(imgWidth);
+    console.log(icon)
   }
   
 
