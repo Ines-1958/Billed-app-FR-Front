@@ -53,6 +53,7 @@ describe("Given I am connected as an employee", () => {
       const windowIcon = screen.getByTestId('icon-window')
       //to-do write expect expression
       expect(windowIcon.classList).toContain("active-icon")
+      //expect(windowIcon).toHaveClass('active-icon')
       
     })
     test("Then bills should be ordered from earliest to latest", () => {

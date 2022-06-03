@@ -85,6 +85,7 @@ export default class NewBill {
     }
   }
 
+  /* istanbul ignore next */
   // not need to cover this function by tests
   updateBill = (bill) => {
     if (this.store) {
