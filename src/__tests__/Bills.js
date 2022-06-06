@@ -2,23 +2,6 @@
  * @jest-environment jsdom
  */
 
-// import {screen, waitFor} from "@testing-library/dom"
-// import BillsUI from "../views/BillsUI.js"
-// import { bills } from "../fixtures/bills.js"
-// import { ROUTES_PATH} from "../constants/routes.js";
-// import {localStorageMock} from "../__mocks__/localStorage.js";
-
-// import router from "../app/Router.js";
-// import Dashboard from "../containers/Dashboard.js";
-
-// import Bills from "../containers/Bills.js";
-// import userEvent from '@testing-library/user-event'
-
-// //AJOUT
-// import mockStore from '../__mocks__/store'
-// import { ROUTES } from '../constants/routes.js'
-
-
 import {screen, waitFor} from "@testing-library/dom"
 import BillsUI from "../views/BillsUI.js"
 import { bills } from "../fixtures/bills.js"
