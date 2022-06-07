@@ -12,11 +12,9 @@ import router from "../app/Router.js";
 import userEvent from "@testing-library/user-event";
 import Bills from "../containers/Bills.js";
 import { formatDate, formatStatus } from "../app/format.js";
-//import wrongStore from "../__mocks__/wrongStore.js";
 import mockStore from "../__mocks__/store.js";
 
 jest.mock('../app/Store', () => require('../__mocks__/store.js').default);
-
 
 
 describe("Given I am connected as an employee", () => {
@@ -181,7 +179,6 @@ describe("Given I am a user connected as Employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await new Promise(process.nextTick);
       const message = await screen.getByText(/Erreur 404/)
-      //const message = screen.findByText(/Erreur 404/)
       expect(message).toBeTruthy()
     })
 
@@ -197,7 +194,6 @@ describe("Given I am a user connected as Employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await new Promise(process.nextTick);
       const message = await screen.getByText(/Erreur 500/)
-      //const message = screen.findByText(/Erreur 500/)
       expect(message).toBeTruthy()
     })
   })

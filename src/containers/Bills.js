@@ -56,9 +56,6 @@ export default class {
         })
         
         .map(doc => {
-            // console.log(doc);
-            // console.log(doc.date);
-            // console.log(doc.status);
             try {
               return {
                 ...doc,
@@ -89,10 +86,6 @@ export default class {
 console.log(formatDate);
 console.log(formatStatus);
 console.log(formatDateTest)
-
-// bills.sort((a,b) => a.date < b.date)
-// const antiChrono = (a, b) => ((a < b) ? 1 : -1);
-// const test = [...bills].sort(antiChrono);
 
 const triDatesTest = (a, b) => ((a.date < b.date) ? -1 : 1);
 const test = [...bills].sort(triDatesTest);

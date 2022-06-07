@@ -97,7 +97,6 @@ jest.mock('../app/store', () => mockStore)
 
       document.body.innerHTML = NewBillUI()
       const handleChangeFile = jest.fn((e) => theNewBills.handleChangeFile(e))
-      //const handleChangeFile = jest.fn(() => theNewBills.handleChangeFile)
       const inputFile = screen.getByTestId("file");
       inputFile.addEventListener('change', handleChangeFile)
 
@@ -202,13 +201,11 @@ describe('Given I am connected as an employee', () => {
         commentary: '',
       }
       
-     /* userEvent.type(inputType, infosForm.type  )
+      userEvent.type(inputType, infosForm.type  )
       userEvent.type(inputNom, infosForm.name)
       userEvent.type(inputDate, infosForm.date )
       userEvent.type(inputMontant, infosForm.amount )
-      userEvent.type(inputTva,  infosForm.vat )
-      userEvent.type(inputPct,  infosForm.pct )
-      userEvent.type(inputCommentaire, infosForm.commentary )*/
+      userEvent.type(inputCommentaire, infosForm.commentary )
       userEvent.upload(inputFichier,infosForm.file )
 
       expect(handleChangeFile).toHaveBeenCalled()
@@ -217,8 +214,6 @@ describe('Given I am connected as an employee', () => {
       newBillForm.addEventListener('submit', handleSubmit)
       fireEvent.submit(newBillForm)
       expect(handleSubmit).toHaveBeenCalled()
-      /*const pageBills = screen.getByText('Mes notes de frais')
-      expect(pageBills).toBeTruthy()*/
     })
 
 
@@ -249,29 +244,18 @@ describe('Given I am connected as an employee', () => {
     })
   })
 
-  
+//TEST D'INTEGRATION POST 
   describe("When an error occurs on API", () => {
-
     beforeEach(() => {
       jest.spyOn(mockStore, "bills")
       console.error = jest.fn()
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem('user', JSON.stringify({ type: 'Employee' , email: "a@a"}))
-      // const root = document.createElement("div")
-      // root.setAttribute("id", "root")
-      // document.body.appendChild(root)
-      // router()
+      //document.body.innerHTML = `<div id="root"></div>`
       document.body.innerHTML = NewBillUI()
     })
 
     test("Then fetch error 500 from API", async () => {
-      /*jest.spyOn(mockStore, 'bills')
-      console.error = jest.fn()
-
-      Object.defineProperty(window, 'localStorage', { value: localStorageMock })
-      window.localStorage.setItem('user', JSON.stringify({ type: 'Employee'}))
-      document.body.innerHTML = `<div id="root"></div>`
-      router()*/
       window.onNavigate(ROUTES_PATH.NewBill)
 
       mockStore.bills.mockImplementationOnce(() => {
@@ -283,35 +267,18 @@ describe('Given I am connected as an employee', () => {
       })
       const theNewBills = new NewBill({document, onNavigate, store: mockStore, localStorage: window.localStorage})
     
-      
-      // const form = screen.getByTestId('form-new-bill')
-      // const handleSubmit = jest.fn((e) => newBill.handleSubmit(e))
-      // form.addEventListener('submit', handleSubmit)
-      //fireEvent.submit(form)
       const handleSubmit = jest.fn((e) => theNewBills.handleSubmit(e))
       const newBillForm = screen.getByTestId('form-new-bill')
       newBillForm.addEventListener('submit', handleSubmit)
       fireEvent.submit(newBillForm)
 
-      // const inputFile = screen.getByTestId('file')
-      // const handleChangeFile = jest.fn((e) => theNewBills.handleChangeFile(e))
-      // const theFile =  new File(["fichier"], "fichier.jpeg", {type: "image/jpeg",});
-      //userEvent.upload(inputFile, theFile);
-
-
       await new Promise(process.nextTick)
-      //await jest.spyOn(mockStore, 'bills')
-
-      //expect(jest.spyOn(mockStore, 'bills')).toBeCalled()
-      //expect(handleChangeFile).toHaveBeenCalled()
+      
       expect(console.error).toBeTruthy()
-      expect(theNewBills.billId).toBeNull()
-      expect(theNewBills.fileUrl).toBeNull()
     })
 
     test("Then fetch error 404 from API", async () => {
       window.onNavigate(ROUTES_PATH.NewBill)
-
       mockStore.bills.mockImplementationOnce(() => {
         return {
           update : () => {
@@ -329,8 +296,6 @@ describe('Given I am connected as an employee', () => {
       await new Promise(process.nextTick)
 
       expect(console.error).toBeTruthy()
-      // expect(theNewBills.billId).toBeNull()
-      // expect(theNewBills.fileUrl).toBeNull()
     })
   })
 })
